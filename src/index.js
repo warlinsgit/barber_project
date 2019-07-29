@@ -94,7 +94,7 @@ app.use('/services', require('./routes/services'));
 // Public
 
 //app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '../public', 'info/index.hbs')));
+app.use(express.static(path.join(__dirname, '../public', '/info/index.hbs')));
 
 
 
