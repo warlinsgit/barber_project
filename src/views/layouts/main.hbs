@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Barbershop</title>
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+
+      <!-- bootstrap 4 -->
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- datepicker -->
+
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+
+
+
+
+    <!-- styles.css -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+  </head>
+  <body>
+
+    {{> nav }}
+  {{> message }}
+
+
+    {{{ body }}}
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/navbar_active.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    browser.executeScript('window.scrollTo(0,10000);');
+  </script>
+    {{> footer }}
+
+
+  </body>
+
+</html>

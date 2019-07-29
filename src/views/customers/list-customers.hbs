@@ -1,0 +1,60 @@
+{{> dashboard }}
+
+
+
+<main class="col bg-faded bg-fadeda   ">
+	 <h2 class="dashboard-title py-3">Customer List</h2>
+	 <div class="card">
+			 <div class="card-body   ">
+<div class="table-responsive">
+                      <table  class="table table-sm admin-booking  " >
+
+      <thead >
+
+
+
+        <tr class="text-left" >
+          <th scope="col">Id</th>
+          <th scope="col">Email</th>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Age</th>
+  				<th scope="col">Action</th>
+
+        </tr>
+      </thead>  {{#each customer}}
+      <tbody>
+        <tr class="text-left">
+          <td>{{this.id}} </td>
+          <td>{{email}} </td>
+          <td>{{fullname}}</td>
+          <td>{{address}}</td>
+          <td>{{city}}</td>
+          <td>{{mobile}}</td>
+          <td>{{age}}</td>
+
+
+          <td>
+
+              <a href="/delete-customer/{{id}}"  class="btn btn-outline-danger btn-sm"  onclick="return confirm('Are You Sure You Want to Delete this Customer?')">Delete</a>
+
+          </td>
+
+        </tr>
+
+
+
+  {{/each}}
+
+
+
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>

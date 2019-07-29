@@ -1,0 +1,61 @@
+
+
+		       {{> dashboard }}
+
+
+
+					 <main class="col bg-faded py-3">
+				 			<h2  class="dashboard-title py-3">Services List</h2>
+							<div class="card">
+			            <div class="card-body">
+
+                      <table  class="table  " width="100%">
+
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Price</th>
+
+          <th>Action</th>
+
+
+        </tr>
+      </thead>{{#each services }}
+      <tbody>
+        <tr>
+          <td>{{this.id}} </td>
+          <td>{{title}} </td>
+          <td>{{description}}</td>
+          <td>{{price}}</td>
+
+
+          <td>
+
+                  <a href="/services/delete/{{id}}" class="btn btn-outline-danger btn-sm"  onclick="return confirm('are you sure?')">Delete </a>
+                    <a href="/services/edit/{{id}}" class="btn btn-outline-primary btn-sm">Edit</a>
+
+          </td>
+
+
+
+        </tr>
+
+  {{else}}
+  <div class="col mx-auto">
+
+              <p>There are no services saved yet</p>
+              <a href="/services/add">Add a service</a>
+
+  {{/each}}
+
+</div>
+
+</tbody>
+</table>
+
+</div>
+</main>
+</div>
+</div>

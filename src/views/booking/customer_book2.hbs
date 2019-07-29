@@ -1,0 +1,65 @@
+
+<div class="container p-4">
+
+
+<div class="row">
+
+<div class="col-md-6 mx-auto" style="background:white;">
+
+
+  <h4 class="p-3 text-center">Check your booking details</h4>
+
+
+<br>
+
+
+
+<form action='/customer_book3' method='post'>
+               <div class="col-md-8 mx-auto ">
+
+                   Day:<input type="text" name="selected_day" value="{{selected_day}}" class="form-control" readonly>
+               </div>
+                    <br>
+                <div class="col-md-8 mx-auto ">
+                     <label for="selected_times">Time:</label>
+                   <input type="text"  name="selected_times" class="form-control " value="{{selected_times}}" readonly>
+                 <input type="text" name="id_slot" value="{{id_slot}}" readonly>
+               </div>
+                    <br>
+               <div class="col-md-8 mx-auto">
+                       <label for="service_title">Service:</label>
+                   <input type="text"  name="service_title" class="form-control" value="{{service_title}}" readonly>
+               </div>
+               <br>
+
+               <div class="col-md-8 mx-auto">
+                    <label for="staff_name">Barber Selected:</label>
+                   <input type="text"  name="staff_name" class="form-control" value="{{staff_name}}" readonly>
+                <input type="text" name="staff_id" value="{{staff_id}}">
+               </div>
+               <br>
+               <div class="col-md-8 mx-auto">
+                  <label for="email">Email:</label>
+                   <input type="email" name="email" value="{{user.email}}" class="form-control" readonly>
+               </div>
+               <input type="text" name="client_id" value="{{client_id}}" readonly>
+
+
+               <input type="hidden" name="customer_name" value="{{user.fullname}}">
+
+
+
+               <div class="text-center p-3">
+                   <br>
+                   <button type="submit" class="btn btn-info px-6">Confirm Booking</button>
+                      <a href="booking" class="btn btn-info" >Change details</a>
+               </div>
+           </form>
+
+       </div>
+   </div>
+
+
+</div>
+</div>
+</div>

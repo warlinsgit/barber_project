@@ -1,0 +1,55 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+		       {{> dashboard }}
+		</div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Services Dashboard</h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                      <table  class="table  " width="100%">
+
+                              <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Day</th>
+                                  <th>Time</th>
+                                  <th>Service</th>
+                                  <th>Customer Name</th>
+                                  <th>When</th>
+
+                                  <th>Action</th>
+
+                                </tr>
+                              </thead>{{#each booked }}
+                              <tbody>
+                                <tr>
+                                  <td>{{id}} </td>
+                            <td>{{this.selected_day}}</td>
+                            <td>{{this.selected_times}}</td>
+                            <td>{{this.service_title}}</td>
+                            <td>{{this.customer_name}}</td>
+                            <td>{{timeago created_at}}</td>
+
+
+
+
+                                </tr>  {{/each}}
+
+
+
+    </tbody>
+  </table>
+
+</div>
+</div>

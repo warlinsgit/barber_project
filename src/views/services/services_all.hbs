@@ -1,0 +1,33 @@
+
+
+<div class="container">
+    <div class="row p-5">
+
+      {{#each services}}
+
+          <div class="col-md-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <a href="#">
+                  <h3 class="card-title text-uppercase">{{title}}</h3>
+                </a>
+                <p class="m-2">{{description}}</p>
+                  <p class="m-2"> €  {{price}}</p>
+
+
+              </div>
+
+            </div>
+
+          </div>
+            {{else}}
+            <div class="col-md-4 mx-auto">
+
+              <p>There are no services saved yet</p>
+              <a href="/services/add">Add a service</a>
+
+
+            </div>
+      {{/each}}
+    </div>
+</div>

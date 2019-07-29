@@ -1,0 +1,60 @@
+<!-- https://bootsnipp.com/snippets/kzz6d -->
+
+<!-- https://demos.creative-tim.com/rotating-css-card/   -->
+		       {{> dashboard }}
+
+
+
+					 <main class="col bg-faded py-3">
+							<h2 class="dashboard-title py-3" >Staff List</h2>
+							<div class="card">
+									<div class="card-body">
+
+
+                      <table  class="table table-hover " width="100%">
+
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Mobile</th>
+
+
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each staff }}
+        <tr>
+          <td>{{staff_id}} </td>
+        <td>{{staff_name}}</td>
+        <td>{{mobile}}</td>
+
+
+          <td>
+
+            <a href="delete/{{staff_id}}" onclick="return confirm('Are You Sure?')" class="btn btn-outline-danger btn-sm">Delete</a>
+     <a href="/edit_staff/{{staff_id}}" class="btn btn-outline-primary btn-sm">Edit</a>
+
+          </td>
+
+        </tr>
+
+{{else}}
+  <div class="col mx-auto">
+
+              <p>There are no staff saved yet</p>
+              <a href="/services/add">Add First Staff</a>
+
+  {{/each}}
+
+</div>
+
+</tbody>
+</table>
+
+</div>
+</main>
+</div>
+</div
