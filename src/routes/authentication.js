@@ -263,7 +263,7 @@ const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [vida,
   var transporter=nodemailer.createTransport( {
 
     service: 'gmail', auth: {
-     user: 'matutinolife@gmail.com', pass: 'matutino3030'
+     user: 'matutinolife@gmail.com', pass: ''
     }
   }
 );
