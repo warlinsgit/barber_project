@@ -1,1 +1,1 @@
-web:nodemon src
+web:node src
