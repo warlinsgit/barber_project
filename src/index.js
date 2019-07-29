@@ -93,8 +93,8 @@ app.use('/services', require('./routes/services'));
 
 // Public
 
-//app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.normalize(path.join(__dirname, './public')), { maxAge: 86400000 }));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 
