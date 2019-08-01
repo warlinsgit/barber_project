@@ -13,14 +13,14 @@ module.exports = {
 */
 /* git  git remote set-url origin https*/
 
-
+/*kkd*/
 
 module.exports = {
   database: {
     host: 'db4free.net',
     port: '3306',
-    user: '',
-    password: '',
+    user: 'warlinsvida',
+    password: 'varlei2020',
     dateStrings:true,
     database: 'barbershop'
   }
