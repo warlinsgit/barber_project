@@ -9,8 +9,8 @@ module.exports = {
     database: 'barbershop'
   }
 }
-
 */
+
 /* git  git remote set-url origin https*/
 
 
