@@ -16,20 +16,22 @@ const nodemailer=require('nodemailer');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
+const { isAdmin } = require('../lib/admin');
 
 
-router.post('/search', async (req, res) => {
+/* Search form - booking/service_booked*/
+router.post('/search', isAdmin, async (req, res) => {
 
 
       const seca = req.body.search;
 
-      const search = await pool.query('SELECT * from booking4 where customer_name = "'+seca+'" ' );
+        const search = await pool.query('SELECT * from booking4 where selected_day = "'+seca+'" order by id desc' );
 
 
 
         if(search.length < 1){
           console.log('nothing-----------',search.length);
-            req.flash('message', 'Nothing found');
+            req.flash('message', 'No bookings found for this date');
 
          res.redirect("service-booked");
 
@@ -42,7 +44,7 @@ router.post('/search', async (req, res) => {
 });
 
 
-
+/* Make a booking  - booking/booking*/
 
 router.get('/booking', isLoggedIn, async (req, res) => {
 
@@ -53,6 +55,7 @@ router.get('/booking', isLoggedIn, async (req, res) => {
 
 });
 
+/* Make a booking - Choose staff  - booking/booking2*/
 router.post('/booking2', isLoggedIn, async (req, res, next) => {
 
     const staff = await pool.query('SELECT * FROM staff_s');
@@ -69,6 +72,8 @@ router.post('/booking2', isLoggedIn, async (req, res, next) => {
 }
 );
 });
+
+/* Make a booking - Choose time  - booking/booking3*/
 
 router.post('/booking3', isLoggedIn, async (req, res, next) => {
 
@@ -109,7 +114,7 @@ router.post('/booking3', isLoggedIn, async (req, res, next) => {
 );
 });
 
-
+/* Make a booking - confirm booking page- booking/customer_book*/
 
 router.post('/booking4', isLoggedIn, async (req, res) => {
 
@@ -151,8 +156,8 @@ console.log('id_slot--------------',  id_slot);
 
 
 
+/* Delete booking - confirm booking page- booking/book-confirmed.hbs*/
 
-//delete booking
 router.get('/delete-booking/:id', async(req, res) => {
 
 
@@ -165,7 +170,7 @@ router.get('/delete-booking/:id', async(req, res) => {
 
 
 
-// book confirmed search
+/* Search book-confirm page- booking/book-confirmed.hbs*/
 
   router.post('/book-confirmed-search', async (req, res) =>{
 
@@ -173,7 +178,16 @@ router.get('/delete-booking/:id', async(req, res) => {
 
       console.log('chipa', chipa);
 
-      const book_confirm_search = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id where b.customer_name = "'+req.body.sica+'" order by selected_day desc ');
+      const book_confirm_search = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id where b.customer_name like "%'+req.body.sica+'%" order by id desc ');
+
+      if(book_confirm_search.length < 1){
+         console.log('nothing-----------',book_confirm_search.length);
+           req.flash('message', 'Not results found');
+
+        res.redirect("book-confirmed");
+
+
+       }else{
 
 
 
@@ -181,9 +195,10 @@ router.get('/delete-booking/:id', async(req, res) => {
 
 
           });
+          }
     });
 
-
+/* book-confirm page- booking/book-confirmed.hbs*/
 router.get('/book-confirmed', async (req, res) => {
   const user = req.user;
   const user_admin = user.admin;
@@ -203,17 +218,19 @@ if(user_admin){
 // All booking service to be done - future
 router.get('/service-booked', async(req, res) => {
 
-  const booked = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id order by selected_day desc' );
+  const booked = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id order by id desc' );
 
   res.render('booking/service-booked', { booked });
 
 });
+
+
 
 
 // All booking service  done - passed
 router.get('/service-booked-done', async(req, res) => {
 
-  const booked = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id order by selected_day desc' );
+  const booked = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id order by id desc' );
 
   res.render('booking/service-booked', { booked });
 
@@ -221,7 +238,7 @@ router.get('/service-booked-done', async(req, res) => {
 
 
 
- //confirm email
+/* confirm booking and send email form to customers -  booking/booking4.hbs*/
 router.post('/confirm_booking/', async(req, res)=>{
   req.check('email', 'Email is Required').notEmpty();
     req.check('email', 'Email wrong format').isEmail();
@@ -243,7 +260,7 @@ router.post('/confirm_booking/', async(req, res)=>{
 
  var transporter=nodemailer.createTransport( {
    service: 'gmail', auth: {
-     user: 'matutinolife@gmail.com', pass: ''
+     user: 'matutinolife@gmail.com', pass: 'matutino3030'
    }
  }
 );
@@ -254,9 +271,9 @@ router.post('/confirm_booking/', async(req, res)=>{
 
 
 
-     text: 'You jave a submission from... Name: '+req.body.name+' Email:  '+req.body.email+' Subject:  '+req.body.subject+'  Message: '+req.body.message,
+     text: 'You have a submission from... Name: '+req.body.name+' Email:  '+req.body.email+' Subject:  '+req.body.subject+'  Message: '+req.body.message,
 
-      html: '<h1 sytle="color:#011e1e">Details of your appointment</h1> <ul><li><b>Day:</b> '+req.body.selected_day+' </li> <li><b>Time:</b>  '+req.body.selected_times+' <li><b> Barber:</b> '+req.body.staff_name+' </li> <li><b> Service:</b> '+req.body.service_title+' </li></ul><div>With warm regards,<br>Barbershop Booking Online</div>'
+      html: '<h2 sytle="color:#011e1e">Thank you for booking your appointment with us</h2><h3>We look forward to seeing you.</h3> <ul><li><b>Day:</b> '+req.body.selected_day+' </li> <li><b>Time:</b>  '+req.body.selected_times+' <li><b> Barber:</b> '+req.body.staff_name+' </li> <li><b> Service:</b> '+req.body.service_title+' </li></ul><p><a href="http://localhost:5000/book-confirmed">Click here for the full details of your booking</a></p><div>With warm regards!<br>Barbershop Booking Online</div>'
 
 
  }
@@ -293,7 +310,7 @@ router.post('/confirm_booking/', async(req, res)=>{
 
       pool.query('INSERT INTO booking4 set ?', [newBook]);
 
-     req.flash('success', 'Message Sent! Thank you for getting in touch!');
+     req.flash('success', 'Thank you for your Booking with us!');
      res.redirect('/profile');
    }}
  );

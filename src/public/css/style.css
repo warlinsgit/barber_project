@@ -5,6 +5,8 @@ body{
 
   color: #811;
 
+
+
 }
 html,body { height: 100%;  margin: 0; }
 .index{
@@ -15,11 +17,13 @@ html,body { height: 100%;  margin: 0; }
 .dashboard-aside{
   width: 100vw;
   height: 100vh;
+
 }
 
 body {
   display: table;
   width: 100%;
+
 }
 /*homepage booking bottom*/
 .booking-btn{
@@ -29,8 +33,21 @@ padding: 20px 50px;
 
 .bottom {
    display: table-row;
-   height: 50px;
+   height: 80px;
+   position: absolute;
+  width: 100%;
+  top:100%;
 
+
+  /*position:fixed;bottom:0;left:0;right:0; top: 100;height:60px; */
+
+
+}
+/*button close - opening hours partials/opening_hours*/
+.close-button{
+  position: relative;
+   top: -13px;
+   left: 14px;
 
 }
 
@@ -91,6 +108,16 @@ li .a:hover {
    background-color: rgba(191, 202, 205, 0.67);
   border-radius: 10px;
 }
+
+/*service price - page services/services_all*/
+.service-price{
+   position: relative;
+  background-color: rgba(37, 47, 39, 0.22);
+     right: 30px;
+
+     font-weight: 600;
+
+ }
 
 @media screen and (max-width: 771px) {
 
@@ -166,12 +193,50 @@ li .a:hover {
  .bottom {
    position: absolute;
    left: 0;
-   bottom: -600px;
+   top: -300px;
    width: 100%;
    height: 114px;
  }
+ .service-price{
+    position: relative;
+   background-color: rgba(37, 47, 39, 0.22);
+      right: 30px;
+      font-size: 20px;
+      font-weight: 600;
 
+  }
 
+  /*message notification success and error */
+
+  .message-success{
+    background-color: #00ff00;
+   color: #4a4a4a;
+
+   position: absolute;
+   top: 55px !important;
+   right: 2px;
+     left: 1px;
+   width: 100%;
+     padding: 3px;
+     font-size: 12px;
+
+   z-index: 1;
+
+  }
+  .message-error{
+    background-color: #ff0066;
+    color: white;
+
+    position: absolute;
+    top: 55px;
+    right: 2px;
+      left: 1px;
+    width: 100%;
+      padding: 3px;
+      font-size: 12px;
+
+    z-index: 1;
+  }
 
 }
 @media screen and (max-width: 375px) {
@@ -196,6 +261,17 @@ li .a:hover {
 
 
      width: 350px;
+
+    }
+    .bottom {
+      position: absolute;
+      left: 0;
+      bottom: -700px;
+      width: 100%;
+      height: 114px;
+    }
+    /*  price services/services_all*/
+
 
     }
 }
@@ -267,7 +343,7 @@ th{
 .login-box{
 width: 280px;
 position: relative;
-  top: 30px;
+  top: 60px;
 
 
 color: black;
@@ -287,13 +363,15 @@ color: black;
   color: white;
 
   position: absolute;
-
+  left: 0%;
   top: 0px;
   width: 100%;
   z-index: 1;
+  opacity: 1;
+ transition: opacity 0.6s; /* 600ms to fade out */
 }
 
-.message-sucess{
+.message-success{
   background-color: #00ff00;
   color: #4a4a4a;
 
@@ -301,6 +379,8 @@ color: black;
   top: 0px;
   width: 100%;
   z-index: 1;
+  opacity: 1;
+ transition: opacity 0.6s; /* 600ms to fade out */
 
 }
 /* bottom homepage*/
@@ -368,8 +448,127 @@ color: black;
 
 /*footer */
 .bottom{
-    background-color:#262626;
-    color: white;
+color: white;
+ /*position:fixed;bottom:0;left:0;right:0; top: 100;height:60px;  */
+}
 
-  /*  position:fixed;bottom:0;left:0;right:0; top: 100;height:30px;  */
+/*services page services/services_all*/
+
+.container.services-all{
+  background: url('/img/homepage.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+
+
+}
+
+
+/*services services/services_all*/
+
+
+.services-inner {
+    border: 2px solid #48c7ec;
+    margin-left: 35px;
+    transition: .3s;
+}
+.our-services-img {
+    float: left;
+    margin-left: -36px;
+    margin-right: 22px;
+    margin-top: 28px;
+}
+.our-services-text {
+    padding-right: 10px;
+}
+.our-services-text {
+    overflow: hidden;
+    padding: 28px 0 25px;
+}
+.our-services-text h4 {
+    color: #222222;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+    position: relative;
+    text-transform: uppercase;
+}
+.our-services-text h4::before {
+    background: #ec6d48 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    position: absolute;
+    width: 35px;
+}
+.our-services-wrapper:hover .services-inner {
+    background: #fff none repeat scroll 0 0;
+    border: 2px solid transparent;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.our-services-text p {
+    margin-bottom: 0;
+}
+p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/*  price services/services_all*/
+.service-price{
+  position: relative ;
+   left: 72%;
+   top: 30px;
+
+}
+
+/*time table*/
+
+.demo-bg{
+background: #ffac0c;
+	margin: 0 auto;
+
+
+}
+.business-hours {
+background: #222;
+padding: 40px 14px;
+margin-top: -15px;
+position: relative;
+}
+.business-hours:before{
+content: '';
+width: 23px;
+height: 23px;
+background: #111;
+position: absolute;
+top: 5px;
+left: -12px;
+transform: rotate(-45deg);
+z-index: -1;
+}
+.business-hours .title {
+font-size: 20px;
+color: #BBB;
+text-transform: uppercase;
+padding-left: 5px;
+border-left: 4px solid #ffac0c;
+}
+.business-hours li {
+color: #888;
+line-height: 30px;
+border-bottom: 1px solid #333;
+}
+.business-hours li:last-child {
+border-bottom: none;
+}
+.business-hours .opening-hours li.today {
+color: #ffac0c;
 }

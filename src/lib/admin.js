@@ -2,8 +2,6 @@
 const pool = require('../database');
 
 
-
-
 exports.isAdmin = async function (req, res, next){
 
 

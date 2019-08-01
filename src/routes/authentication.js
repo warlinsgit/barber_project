@@ -25,7 +25,7 @@ router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
     failureFlash: true
-  }))
+  }));
 
 
 router.get('/signin',  (req, res) => {
@@ -33,6 +33,7 @@ router.get('/signin',  (req, res) => {
 });
 
 router.post('/signin', isNotLoggedIn,(req, res, next) => {
+
   req.check('email', 'email is Required').notEmpty();
   req.check('email', 'email is Incorret').isEmail();
   req.check('password', 'Password is Required').notEmpty();
@@ -53,8 +54,12 @@ router.post('/signin', isNotLoggedIn,(req, res, next) => {
 });
 
 
-router.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+router.get('/profile', isLoggedIn, async (req, res) => {
+
+  const booked = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id order by id desc' );
+
+  res.render('profile', { booked });
+  //res.render('profile');
 });
 
 
@@ -254,16 +259,16 @@ router.post('/request-pass', async(req, res) =>{
 
 
 
-  const vida = createHash(emailo);
+  const email_hash = createHash(emailo);
 
 
-const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [vida, email]);
+const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [email_hash, email]);
 
 
   var transporter=nodemailer.createTransport( {
 
     service: 'gmail', auth: {
-     user: 'matutinolife@gmail.com', pass: ''
+     user: 'matutinolife@gmail.com', pass: 'matutino3030'
     }
   }
 );
@@ -274,7 +279,7 @@ const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [vida,
       from: '"Barbershop Online Booking" <warlins25@gmail.com><br>',
        to: ''+req.body.email+'', subject: 'Email',
 
-      html: '<h1 sytle="color:#011e1e">Recovery your password using this code </h1>'+vida+'<a href="http://localhost:5000/forgot-pass"><br><b>Recovery Password</b></a>'
+      html: '<h1 sytle="color:#011e1e">Recovery your password using the code below </h1>'+email_hash+'<a href="http://localhost:5000/forgot-pass"><br><b>Recovery Password</b></a>'
 
 
 
@@ -285,11 +290,11 @@ const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [vida,
         return console.log(error);
       }
 
-      console.log('vida', vida);
+      console.log('email_hash', email_hash);
       console.log('Message sent:  '+ info.response);
 
 
-      req.flash('success', 'Message Sent! Thank you for getting in touch!');
+      req.flash('success', 'Message Sent! Please check your email!');
       res.redirect('/signin');
     }
   );
@@ -396,7 +401,7 @@ router.post('/forgot-pass', async(req, res) =>{
              //console.log(req.body.confirm);
           return res.render('auth/signin', {
                    message: null,
-                   success: "Successfully Updated Password, Now you can use your new password",
+                   success: "Password Successfully Updated",
 
 
                });

@@ -23,7 +23,7 @@
  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
 
 
-
+  <!-- message alert message javascript -->
 
 
     <!-- styles.css -->
@@ -36,11 +36,20 @@
     {{> nav }}
   {{> message }}
 
-
+{{> opening_hours }}
     {{{ body }}}
 
-  <link rel="stylesheet" href="/css/style.css">
 
+
+<!-- mask validation for inputs -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" charset="utf-8"></script>
+
+
+<!-- alert css style-->
+
+
+
+  <script src="/js/validate_input_mask.js" charset="utf-8"></script>
   <script src="/js/navbar_active.js" charset="utf-8"></script>
   <script type="text/javascript">
     browser.executeScript('window.scrollTo(0,10000);');

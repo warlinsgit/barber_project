@@ -28,10 +28,15 @@ router.get('/staff',(req, res) => {
 router.post('/staff/add_staff/', (req, res) => {
 
   const{ staff_name, mobile } = req.body;
+  //var date_commenced = new Date();
+  var d = new Date();
+  var n = d.toLocaleString();
+  var date_commenced = n;
 
   const newInfo = {
     staff_name,
-    mobile
+    mobile,
+    date_commenced
 
   };
 

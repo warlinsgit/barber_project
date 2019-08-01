@@ -1,8 +1,8 @@
 
 		       {{> dashboard }}
 
-					 <main class="col bg-faded  py-3">
-				 			<h2 class="dashboard-title py-3">Add New Service</h2>
+					 <main class="col bg-faded  py-5">
+				 			<h2 class="dashboard-title">Add New Service</h2>
 							<div class="card">
 			            <div class="card-body">
 
@@ -10,7 +10,7 @@
                               <div class="form-group">
                                 <label for="title" class=" col-form-label ">Service Title*</label>
 
-                                  <input  name="title" placeholder="Service Title" class="form-control" required="required" type="text" autofocus>
+                                  <input  name="title" placeholder="Service Title" class="form-control w-75" required="required" type="text" autofocus>
 
                               </div>
 
@@ -25,7 +25,7 @@
                               <div class="form-group">
                                 <label for="price" class=" col-form-label">Price</label>
 
-                                  <input  name="price" placeholder="Price" class="form-control" required="required" type="text">
+                                  <input  name="price" placeholder="Price" class="form-control w-25" required="required" type="text" id="price">
 
                               </div>
 
@@ -44,3 +44,10 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+ $('#price').mask('00');
+ $('#phone-number').mask('+(353) 00 000 0000');
+});
+</script>

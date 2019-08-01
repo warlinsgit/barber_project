@@ -4,10 +4,10 @@
 
 <div class="row">
 
-<div class="col-md-6 mx-auto" style="background:white;">
+<div class="col-md-6 mx-auto"  style="background:rgba(191, 202, 205, 0.67);">
 
 
-  <h4 class="p-2 text-center">Confirm your booking details</h4>
+  <h4 class="py-5 text-center text-secondary">Confirm your booking details</h4>
 
 
 <form action='/confirm_booking' method='post'>
@@ -48,7 +48,7 @@
 
 
 
-               <div class="text-center py-2">
+               <div class="text-center py-4">
 
 
                    <input type="hidden" name="client_id" value="{{user.id}}" readonly>
@@ -57,7 +57,7 @@
 
 
                    <button type="submit" class="btn btn-success" >Confirm</button>
-                      <a href="booking" class="btn btn-info" >Change Details</a>
+                    <a value="Cancel" onclick="cancel2()" class="btn btn-primary text-white"> Chanage Details</a>
                </div>
            </form>
 
@@ -70,3 +70,6 @@
 </div>
 </div>
 </div>
+
+
+<script src="./js/previous_booking.js" charset="utf-8"></script>

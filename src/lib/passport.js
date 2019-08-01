@@ -32,20 +32,27 @@ passport.use('local.signin', new LocalStrategy({
 }));
 
     passport.use('local.signup', new LocalStrategy({
+
+
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     async (req, email, password, done) => {
+
+      var d = new Date();
+      var n = d.toLocaleString();
+      var user_since = n;
       const { fullname } = req.body;
-      var  admin   = 1;
+      //var  admin   = 1;
 
       const newUser = {
         email: email,
         password: password,
         fullname,
-        admin: admin
+        user_since
+        //admin: admin
 
 
 

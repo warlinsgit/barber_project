@@ -1,33 +1,39 @@
+<!-- https://bootsnipp.com/snippets/BEGjp  -->
+
+<div class="jumbotron text-center">
 
 
-<div class="container">
-    <div class="row p-5">
+    <h3 class="">OUR SERVICES</h3>
+    <p class="lead">Check below for our services we can offer you.  For bookings visit  <a href="/booking">on-line bookings</a></p>
 
-      {{#each services}}
-
-          <div class="col-md-3">
-            <div class="card text-center">
-              <div class="card-body">
-                <a href="#">
-                  <h3 class="card-title text-uppercase">{{title}}</h3>
-                </a>
-                <p class="m-2">{{description}}</p>
-                  <p class="m-2"> €  {{price}}</p>
-
-
-              </div>
-
-            </div>
-
-          </div>
-            {{else}}
-            <div class="col-md-4 mx-auto">
-
-              <p>There are no services saved yet</p>
-              <a href="/services/add">Add a service</a>
-
-
-            </div>
-      {{/each}}
     </div>
+	<div class="container">
+
+    	<div class="row">
+      {{#each services}}
+		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 py-1">
+						<div class="our-services-wrapper mb-60">
+							<div class="services-inner">
+								<div class="our-services-img">
+								<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fnickyboyspalmcoast.com%2Fwp-content%2Fuploads%2F2015%2F01%2Fbarber-clippers.png&f=1" width="68px" alt="">
+								</div>
+								<div class="our-services-text">
+									<h4>{{title}}</h4>
+									<p>{{description}}</p>
+                  	<h3 class=" service-price">  € {{price}}</h3>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+{{/each}}
+<div class="services-all">
+
+</div>
+	</div>
+
+	</div>
+
 </div>

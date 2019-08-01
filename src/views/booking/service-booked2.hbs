@@ -4,8 +4,8 @@
 
 
 
-					<main class="col bg-faded py-3">
-						 <h2  class="dashboard-title py-3  ">Service Booked</h2>
+					<main class="col bg-faded py-5">
+						 <h2  class="dashboard-title  ">Service Booked</h2>
 						 <div class="card">
 								 <div class="card-body">
 								<form method="post" action="/search" class="card card-sm" autocomplete="on">
@@ -14,7 +14,7 @@
 
 											<!--end of col-->
 											<div class="col">
-												 <input class="form-control form-control-sm" name="search" type="text" placeholder="customer name">
+												<input data-date-format="dd/mm/yyyy" class="form-control form-control-sm" id="datepicker" name="search" class="form-control">
 											</div>
 											<!--end of col-->
 										 <button class="btn btn-outline-secondary btn-sm search-bottom " type="submit">Search</button>
@@ -64,3 +64,20 @@
 												 		 </main>
 												 		</div>
 													</div>
+
+													<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+																 <script type="text/javascript">
+
+																 var date = new Date();
+																 date.setDate(date.getDate());
+																     $('#datepicker').datepicker({
+
+
+																       daysOfWeekDisabled: [0]
+
+																     });
+																     $('#datepicker').datepicker("setDate", new Date());
+
+
+
+																 </script>

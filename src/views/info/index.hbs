@@ -3,17 +3,77 @@
 
 
 <main class="index">
+
+
   <header class="masthead d-flex">
+
       <div class="container text-center my-auto">
           <h3 class="mb-1"> Welcome to the Barbershop</h3>
           <h3 class="mb-5">
 
               <a href="/booking" class="btn btn-outline-primary booking-btn">
 
-              Booking
+              Book here
 
             </a>
           </h3>
       </div>
   </header>
 </main>
+
+
+
+<div class="container">
+  <h2>Small Modal</h2>
+  <!-- Button to Open the Modal -->
+
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+
+
+        <!-- Modal body -->
+        <div class="modal-body bg-dark">
+          <div class="demo-bg">
+
+
+            <div class="business-hours">
+            <h2 class="title">Opening Hours</h2>
+            <ul class="list-unstyled opening-hours">
+            <li>Sunday <span class="pull-right">Closed</span></li>
+            <li>Monday <span class="pull-right">9:00-22:00</span></li>
+            <li>Tuesday <span class="pull-right">9:00-22:00</span></li>
+            <li>Wednesday <span class="pull-right">9:00-22:00</span></li>
+            <li>Thursday <span class="pull-right">9:00-22:00</span></li>
+            <li>Friday <span class="pull-right">9:00-23:30</span></li>
+            <li>Saturday <span class="pull-right">14:00-23:30</span></li>
+            </ul>
+            </div>
+            </div>
+
+
+
+
+  </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+$('.opening-hours li').eq(new Date().getDay()).addClass('today');
+});
+</script>

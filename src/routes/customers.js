@@ -34,7 +34,7 @@ router.post('/customers/add/', async (req, res) => {
 */
 
 
-router.get('/list-customers', async (req, res) => {
+router.get('/list-customers', isLoggedIn, async (req, res) => {
   //const customer = await pool.query('SELECT * FROM customers WHERE userc_id = ?', [req.user.id]);
 
 
@@ -93,7 +93,7 @@ router.post('/edit-customer/:id', async (req, res) => {
 });
 
 
-router.get('/delete-customer/:id', async(req, res) => {
+router.get('/delete-customer/:id',  async(req, res) => {
     //console.log(req.params.id);
     //res.send('deleted');
 

@@ -5,8 +5,8 @@
 
 
 
-					<main class="col bg-faded py-3">
-						 <h2 class="dashboard-title py-3" >Booking History</h2>
+					<main class="col bg-faded py-5">
+						 <h2 class="dashboard-title" >Booking History</h2>
 
 						 <div class="card">
 								 <div class="card-body">
@@ -17,7 +17,8 @@
 
 														<!--end of col-->
 														<div class="col">
-															 <input class="form-control form-control-sm" name="search" type="text" placeholder="customer name">
+											<!--				 <input class="form-control form-control-sm" name="search" type="text" placeholder="customer name"> -->
+															   <input data-date-format="dd/mm/yyyy" class="form-control form-control-sm" id="datepicker" name="search" class="form-control">
 														</div>
 														<!--end of col-->
 														<div class="col-auto">
@@ -29,7 +30,7 @@
 			                <div class="row">
 			                    <div class="col-md-12">
 <div class="table-responsive">
-			                      <table  class="table table-sm admin-booking">
+			                      <table  class="table table-hover table-sm admin-booking">
 
 			                              <thead>
 			                                <tr>
@@ -66,4 +67,20 @@
 	</div></div>
 				 	</main>
 				 </div>
-				 </div
+			 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+			 <script type="text/javascript">
+
+			 var date = new Date();
+			 date.setDate(date.getDate());
+			     $('#datepicker').datepicker({
+
+
+			       daysOfWeekDisabled: [0]
+
+			     });
+			     $('#datepicker').datepicker("setDate", new Date());
+
+
+
+			 </script>
