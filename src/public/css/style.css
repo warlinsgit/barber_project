@@ -31,14 +31,7 @@ padding: 20px 50px;
     font-size: 30px;
 }
 
-.bottom {
 
-
-
-  position:fixed;bottom:0;left:0;right:0; top: 100;height:60px;
-
-
-}
 /*button close - opening hours partials/opening_hours*/
 .close-button{
   position: relative;
@@ -187,11 +180,11 @@ li .a:hover {
  }
 
  .bottom {
-   position: absolute;
-   left: 0;
-   top: -300px;
-   width: 100%;
-   height: 114px;
+
+   color: white;
+    position:fixed;bottom:0;left:0;right:0; top: 100;height:60px;
+    display: none;
+   }
  }
  .service-price{
     position: relative;
@@ -259,6 +252,7 @@ li .a:hover {
      width: 350px;
 
     }
+    /*
     .bottom {
       position: absolute;
       left: 0;
@@ -266,6 +260,7 @@ li .a:hover {
       width: 100%;
       height: 114px;
     }
+    */
     /*  price services/services_all*/
 
 
@@ -356,27 +351,30 @@ color: black;
 /* message notification */
 .message-error{
   background-color: #ff0066;
-  color: white;
-
-  position: absolute;
-  left: 0%;
-  top: 0px;
-  width: 100%;
-  z-index: 1;
-  opacity: 1;
- transition: opacity 0.6s; /* 600ms to fade out */
+     color: white;
+ padding: 15px;
+       font-size: 14px;
+     position: absolute;
+     left: 0%;
+     top: -1px !important;
+     width: 100%;
+     z-index: 1;
+     opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
 }
 
 .message-success{
-  background-color: #00ff00;
-  color: #4a4a4a;
-
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  z-index: 1;
-  opacity: 1;
- transition: opacity 0.6s; /* 600ms to fade out */
+  background-color:  #00ff00;
+   color: white;
+padding: 15px;
+     font-size: 14px;
+   position: absolute;
+   left: 0%;
+   top: -1px !important;
+   width: 100%;
+   z-index: 1;
+   opacity: 1;
+  transition: opacity 0.6s; /* 600ms to fade out */
 
 }
 /* bottom homepage*/
@@ -445,7 +443,7 @@ color: black;
 /*footer */
 .bottom{
 color: white;
- /*position:fixed;bottom:0;left:0;right:0; top: 100;height:60px;  */
+ position:fixed;bottom:0;left:0;right:0; top: 100;height:60px;
 }
 
 /*services page services/services_all*/
