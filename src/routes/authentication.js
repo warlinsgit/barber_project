@@ -1,24 +1,23 @@
-
-//https://www.codementor.io/joshuaaroke/sending-html-message-in-nodejs-express-9i3d3uhjr
-
 const express = require('express');
 const router = express.Router();
 const pool = require('../database');
 const nodemailer=require('nodemailer');
 const bodyParser = require('body-parser');
-
 const bCrypt = require('bcryptjs');
 const helpers = require('../lib/helpers');
-
-
 const passport = require('passport');
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 
 
+//get signup page
 
 router.get('/signup', isNotLoggedIn, (req, res) => {
   res.render('auth/signup');
 });
+
+
+
+//signup form auth/signup.hbs
 
 router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
 
@@ -28,9 +27,14 @@ router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
   }));
 
 
+//get signin page
+
 router.get('/signin',  (req, res) => {
   res.render('auth/signin');
 });
+
+// signin page form
+
 
 router.post('/signin', isNotLoggedIn,(req, res, next) => {
 
@@ -53,9 +57,10 @@ router.post('/signin', isNotLoggedIn,(req, res, next) => {
 
 });
 
-
+//get user profile page if user is authenticated
 router.get('/profile', isLoggedIn, async (req, res) => {
 
+//user profile page select user booking history if user made a booking
   const booked = await pool.query('SELECT * FROM booking4 b LEFT JOIN staff_s st ON st.staff_id = b.staff_id order by id desc' );
 
   res.render('profile', { booked });
@@ -63,7 +68,7 @@ router.get('/profile', isLoggedIn, async (req, res) => {
 });
 
 
-
+// end session  - user logout - redirect to the homepage
 router.get('/logout',  (req, res) => {
 
   req.logout();
@@ -73,48 +78,39 @@ router.get('/logout',  (req, res) => {
 
 
 /* GET Change Password Page */
-    router.get('/change-password',isLoggedIn,  (req, res, next) => {
-        res.render('auth/change-password');
+router.get('/change-password', isLoggedIn,  (req, res, next) => {
+    res.render('auth/change-password');
 
-    });
-
-
-
+});
 
 
    /* POST Change Password */
-   router.post('/changes-password', function (req, res, next) {
+router.post('/changes-password', function (req, res, next) {
 
-
-
-     let isValidPassword = function (user, password) {
+    let isValidPassword = function (user, password) {
            return bCrypt.compareSync(password, user);
-       };
+    };
 
-       let createHash = function (password) {
+     let createHash = function (password) {
            return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-       };
+    };
 
 
+     const email = req.body.email;
 
-      //console.log(req.body.username);
-
-      const email = req.body.email;
-
-        pool.query("SELECT * FROM users_b WHERE email = ?;", [email], function (err, rows){
+      pool.query("SELECT * FROM users_b WHERE email = ?;", [email], function (err, rows){
 
           //If Unexpected Error - Log It & Return It
-          if (err || !rows.length || rows === []) {
-              console.log("Error: " + err);
-            return res.render('auth/change-password', {
-                  message: "User " + email + " not found.",
-                  success: null,
-                email: req.body.email
+       if (err || !rows.length || rows === []) {
+        console.log("Error: " + err);
+        return res.render('auth/change-password', {
+        message: "User " + email + " not found.",
+        success: null,
+        email: req.body.email
 
+        });
 
-
-              });
-          } else {
+        } else {
               //New Password & Confirm Passwords DO NOT match
               if (req.body.newpass !== req.body.confirm) {
                 console.log(req.body.email);
@@ -163,26 +159,24 @@ router.get('/logout',  (req, res) => {
 
   //edit user
 
-  router.get('/edit-user/:id', async (req, res) => {
+router.get('/edit-user/:id', async (req, res) => {
 
-    const { id }  = req.params;
+  const { id }  = req.params;
+  const users = await pool.query('SELECT * FROM users_b WHERE id = ?', [id]);
 
-    const users = await pool.query('SELECT * FROM users_b WHERE id = ?', [id]);
+   res.render('auth/edit-user', {users: users[0]});
 
-    res.render('auth/edit-user', {users: users[0]});
-
-  });
+});
 
 
-  router.post('/edita-user/:id', async (req, res) => {
+router.post('/edita-user/:id', async (req, res) => {
           //console.log('cheguei aqui');
-    const { id } = req.params;
-    const { fullname } = req.body;
+  const { id } = req.params;
+  const { fullname } = req.body;
 
-    const userDetails = {
+  const userDetails = {
 
       fullname
-
 
     };
 
@@ -191,41 +185,37 @@ router.get('/logout',  (req, res) => {
         console.log('cheguei aqui');
     res.render('auth/edit-user');
 
-  });
+});
 
 
 
   //Delete user profile
 
-  router.get('/delete-profile/:id', async(req, res) => {
-      console.log(req.params.id);
-      //res.send('deleted');
+router.get('/delete-profile/:id', async(req, res) => {
+    console.log(req.params.id);
 
-
-      const { id } = req.params;
-
+    const { id } = req.params;
 
       await pool.query('DELETE FROM users_b WHERE id = ?', [id]);
       req.flash('success', 'Profile removed successfully');
         req.logout();
 
       res.redirect('/logout');
-  });
+});
 
-
-//ask user email to reset password
+// Page - ask user email to reset password
 router.get('/forgot_req_email', async(req, res) => {
 
     res.render('auth/forgot_req_email');
 });
 
-// request email from user to recovery password
+//Page forgot_req_email -   request email from user to recovery password
 
 router.post('/request-pass', async(req, res) =>{
 
   let createHash = function (password) {
       return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-  };
+};
 
    //const email = req.body.email;
   //const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [createHash(req.body.email), email]);
@@ -233,15 +223,9 @@ router.post('/request-pass', async(req, res) =>{
   const emailo = req.body.email;
 
 
-
-
-
-
   const emaila_ = await pool.query('SELECT * FROM users_b where email = "'+emailo+'" ');
 
-
   console.log('emaila_=========', emaila_);
-
 
    const err = '';
     //If Unexpected Error - Log It & Return It
@@ -253,10 +237,9 @@ router.post('/request-pass', async(req, res) =>{
 
 
 
-        });
+      });
 
-  };
-
+};
 
 
   const email_hash = createHash(emailo);
@@ -309,11 +292,7 @@ router.get('/forgot-pass', async(req, res) => {
     res.render('auth/forgot-pass');
 });
 
-
-
 router.post('/forgot-pass', async(req, res) =>{
-
-
 
   let isValidPassword = function (user, password) {
         return bCrypt.compareSync(password, user);
@@ -323,18 +302,11 @@ router.post('/forgot-pass', async(req, res) =>{
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
     };
 
-
-
    const coded = req.body.coded;
 
+   const codeda = await pool.query('SELECT * FROM users_b where coded = "'+coded+'" ');
 
-
-       const codeda = await pool.query('SELECT * FROM users_b where coded = "'+coded+'" ');
-
-
-   console.log('coded=========', codeda);
-
-
+   //console.log('coded=========', codeda);
     const err = '';
      //If Unexpected Error - Log It & Return It
      if (err || !codeda.length || codeda === []) {
@@ -343,15 +315,8 @@ router.post('/forgot-pass', async(req, res) =>{
              message: "Code Incorret.",
              success: null
 
-
-
          });
-
 };
-
-
-
-
 
    const email = req.body.email;
 
@@ -364,8 +329,6 @@ router.post('/forgot-pass', async(req, res) =>{
                message: "User " + email + " not found.",
                success: null,
                email: req.body.email
-
-
 
            });
        } else {
@@ -409,14 +372,5 @@ router.post('/forgot-pass', async(req, res) =>{
        }
    });
 });
-
-
-
-
-
-//https://www.youtube.com/watch?v=sbiXYoKBCrM&list=PLQVFMtitqcm80_a5_jVrw5oFpoSMdtW2o&index=52
-
-
-
 
 module.exports = router;

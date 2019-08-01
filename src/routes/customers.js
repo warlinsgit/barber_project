@@ -1,12 +1,9 @@
+// Add - Edit - Delete Customers
+
 const express = require('express');
 const router = express.Router();
-
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
-
-
-
-
 router.get('/customers', (req, res) => {
 
   res.render('customers/add');
@@ -32,7 +29,6 @@ router.post('/customers/add/', async (req, res) => {
 
 });
 */
-
 
 router.get('/list-customers', isLoggedIn, async (req, res) => {
   //const customer = await pool.query('SELECT * FROM customers WHERE userc_id = ?', [req.user.id]);
@@ -63,11 +59,11 @@ router.get('/edit-customer/:id', async (req, res) => {
 
   console.log('cusstomer doidao>>>>>>>>>>>>>>>', [customer])
 
-res.render('customers/edit-customer', {customer: customer[0]} );
+   res.render('customers/edit-customer', {customer: customer[0]} );
 });
 
 
-
+// Edit user details  profile page
 router.post('/edit-customer/:id', async (req, res) => {
         console.log('cheguei aqui');
   const { id } = req.params;
@@ -76,12 +72,11 @@ router.post('/edit-customer/:id', async (req, res) => {
   const user_email_p = req.user.email;
     console.log('user_email_p  ===========', user_email_p );
 
-
   const customer = {
 
     address, city, mobile, age
 
-  };
+};
 
 
  await pool.query('UPDATE users_b set ? WHERE email = ?', [customer, user_email_p ]);
@@ -92,7 +87,7 @@ router.post('/edit-customer/:id', async (req, res) => {
 
 });
 
-
+//Delete user profile  - Delete user account
 router.get('/delete-customer/:id',  async(req, res) => {
     //console.log(req.params.id);
     //res.send('deleted');

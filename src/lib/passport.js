@@ -3,9 +3,9 @@
 const passport = require('passport');
 const LocalStrategy   = require('passport-local').Strategy;
 const helpers = require('../lib/helpers');
+const validator = require('express-validator');
+
 // load all the things we need
-
-
 const pool = require('../database');
 
 
@@ -33,14 +33,30 @@ passport.use('local.signin', new LocalStrategy({
 
     passport.use('local.signup', new LocalStrategy({
 
-
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
-    },
-    async (req, email, password, done) => {
 
+    },
+
+
+    async (req, email, password, done) => {
+//Validate signup - user
+      req.check('email', 'Invalid email').notEmpty().isEmail();
+      req.check('password', 'Incorret Password, must contain at least 4 or more characters').notEmpty().isLength({min:4});
+      req.check('fullname', 'Invalid fullname').notEmpty().isLength({min:4});
+
+      var errors = req.validationErrors(); //check if any error appeard
+    if (errors){
+      var messages = [];
+      errors.forEach(function(error) {
+        messages.push(error.msg);
+      });
+      return done(null, false, req.flash('message', messages));
+    }
+
+// date -  add when user is registered
       var d = new Date();
       var n = d.toLocaleString();
       var user_since = n;
@@ -54,9 +70,9 @@ passport.use('local.signin', new LocalStrategy({
         user_since
         //admin: admin
 
-
-
       };
+
+
        const rows = await pool.query('SELECT * FROM users_b WHERE email = ?', [email]);
 
 

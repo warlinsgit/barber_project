@@ -1,31 +1,26 @@
 const express = require('express');
 const router = express.Router();
-
 const pool = require('../database');
-
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const auth = require('../lib/admin');
 var isAdmin = auth.isAdmin;
 
-
-router.get('/staff_list', async (req, res) => {
+//get all staff -  staff/staff_list
+router.get('/staff_list', isAdmin, async (req, res) => {
 
     const staff = await pool.query('SELECT * FROM staff_s');
   //const staff = await pool.query('SELECT * FROM staff_s WHERE staff_id = ?', [req.user.id]);
-
-
   res.render('staff/staff_list', { staff });
 });
 
-
-
-
-router.get('/staff',(req, res) => {
+// get page to add a new staff -  staff/add_staff
+router.get('/staff', isAdmin,(req, res) => {
 
   res.render('staff/add_staff', {user: req.user});
 });
 
-router.post('/staff/add_staff/', (req, res) => {
+//  add a new staff form -  staff/add_staff
+router.post('/staff/add_staff/',isAdmin, (req, res) => {
 
   const{ staff_name, mobile } = req.body;
   //var date_commenced = new Date();
@@ -51,12 +46,9 @@ router.post('/staff/add_staff/', (req, res) => {
   res.redirect('/staff_list');
 });
 
+//edit staff page  - staff/edit_staff.hbs
 
-
-//edit customers
-
-
-router.get('/edit_staff/:staff_id', async (req, res) => {
+router.get('/edit_staff/:staff_id', isAdmin, async (req, res) => {
 
   const { staff_id }  = req.params;
 
@@ -66,7 +58,8 @@ router.get('/edit_staff/:staff_id', async (req, res) => {
 
 });
 
-router.post('/edit_staff/:staff_id', async (req, res) => {
+//edit staff form  - staff/edit_staff.hbs
+router.post('/edit_staff/:staff_id', isAdmin, async (req, res) => {
         console.log('cheguei aqui');
   const { staff_id } = req.params;
   const { staff_name, mobile } = req.body;
@@ -87,10 +80,10 @@ router.post('/edit_staff/:staff_id', async (req, res) => {
 
 });
 
-//delete staff
+//delete staff - staff/staff_lists
 
 
-router.get('/delete/:id', async(req, res) => {
+router.get('/delete/:id', isAdmin, async(req, res) => {
     //console.log(req.params.id);
     //res.send('deleted');
 
@@ -101,15 +94,5 @@ router.get('/delete/:id', async(req, res) => {
     res.redirect('/staff_list');
 });
 
-/*
-function isAdmin(req, res, next) {
-if (req.isAuthenticated()) {
-    if (req.user.local.admin == 1) {
-        return next();
-    }
-}
-res.redirect('/signin');
-}
-*/
 
 module.exports = router;

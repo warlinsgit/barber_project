@@ -1,145 +1,99 @@
-
-
-					{{> dashboard }}
-
-
+<!--   booking/book-confirmed  - Booking History - access from navbar - aside profile page  booking - my booking history  -->
+{{> dashboard }}
 
 
 <main class="col bg-faded  bg-fadeda py-5 ">
-	<h2 class="dashboard-title  ">Booking History</h2>
-	<div class="card ">
-		 <div class="card-body">
- {{#if user.admin}}
-
-
-
-
-
-
-									<form method="post" action="/book-confirmed-search" class="card card-sm" autocomplete="on">
-
-									 <div class="card-body row no-gutters align-items-center">
-
-											<!--end of col-->
-											<div class="col">
-												 <input class="form-control form-control-sm " name="sica" type="search" placeholder="Customer Name">
-											</div>
-											<!--end of col-->
-											<div class="col-auto">
-												 <button class="btn btn-outline-dark btn-sm  " type="submit">Search</button>
-											</div>
-											<!--end of col-->
-									 </div>
-						 </form>
-<div class="table-responsive">
-
-                      	<table  class="table table-sm table-hover admin-booking ">
-
-													<thead >
-														<tr>
-															<th scope="col">Id</th>
-															 <th scope="col">Day</th>
-															 <th scope="col">Time</th>
-															 <th scope="col">Service</th>
-															 <th scope="col">Customer</th>
-																<th scope="col">Staff</th>
-															 <th scope="col">When</th>
-															 <th scope="col">Action</th>
-
-
-
-                                </tr>
-                              </thead>
-															{{#each staffa }}
-
-                              <tbody>
-                                <tr>
-                                    <td>{{this.id}} </td>
-                                    <td>{{this.selected_day}} </td>
-                                    <td>{{this.selected_times}}</td>
-                                    <td>{{this.service_title}}</td>
-                                    <td>{{this.customer_name}}</td>
-                                    <td>{{this.staff_name}}</td>
-                                    <td class="text-muted">{{timeago created_at}}</td>
-
-                            				<td>
-
-										<a href="delete-booking/{{id}}" onclick="return confirm('Are You Sure You Want to Delete This Booking?')" class="btn btn-outline-danger btn-sm">Delete</a>
-
-                                      <a href="booking/" class="btn btn-outline-primary btn-sm">Rebook</a>
-
-                                    </td>
-
-                                </tr>
-
-  {{/each}}
-
-															 </tbody>
-														 </table>
+    <h2 class="dashboard-title  ">Booking History</h2>
+    <div class="card ">
+        <div class="card-body">
+            {{#if user.admin}}
+            <form method="post" action="/book-confirmed-search" class="card card-sm" autocomplete="on">
+                <div class="card-body row no-gutters align-items-center">
+                    <!--end of col-->
+                    <div class="col">
+                        <input class="form-control form-control-sm " name="sica" type="search" placeholder="Customer Name">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-outline-dark btn-sm  " type="submit">Search</button>
+                    </div>
+                    <!--end of col-->
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table  class="table table-sm table-hover admin-booking ">
+                    <thead >
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Day</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Staff</th>
+                            <th scope="col">When</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    {{#each staffa }}
+                    <tbody>
+                        <tr>
+                            <td>{{this.id}} </td>
+                            <td>{{this.selected_day}} </td>
+                            <td>{{this.selected_times}}</td>
+                            <td>{{this.service_title}}</td>
+                            <td>{{this.customer_name}}</td>
+                            <td>{{this.staff_name}}</td>
+                            <td class="text-muted">{{timeago created_at}}</td>
+                            <td>
+                                <a href="delete-booking/{{id}}" onclick="return confirm('Are You Sure You Want to Delete This Booking?')" class="btn btn-outline-danger btn-sm">Delete</a>
+                                <a href="booking/" class="btn btn-outline-primary btn-sm">Rebook</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</main>
 </div></div>
-
-															 </main>
-</div></div>
-														{{else}}
+{{else}}
 <div class="table-responsive">
-
-
-																				<table  class="table table-hover table-sm">
-
-																								<thead >
-																									<tr>
-																										<th scope="col">Id</th>
-																										 <th scope="col">Day</th>
-																										 <th scope="col">Time</th>
-																										 <th scope="col">Service</th>
-																										 <th scope="col">Customer Name</th>
-																											<th scope="col">Staff Name</th>
-																										 <th scope="col">When</th>
-																										 <th scope="col">Action</th>
-
-
-
-																									</tr>
-																								</thead>{{#each staffa }}
-																								<tbody>
-																									<tr>
-																											<td>{{this.id}} </td>
-																											<td>{{this.selected_day}} </td>
-																											<td>{{this.selected_times}}</td>
-																											<td>{{this.service_title}}</td>
-																											<td>{{this.customer_name}}</td>
-																											<td>{{this.staff_name}}</td>
-																											<td class="text-muted">{{timeago created_at}}</td>
-
-																							<td>
-
-
-																												<a href="booking/" class="btn btn-outline-primary btn-sm">Rebook</a>
-
-																											</td>
-
-																									</tr>
-																									{{else}}
-																			            <div class="col-md-4 mx-auto">
-
-																			              <p>There are no booking saved yet</p>
-																			              <a href="/booking">Make your first booking</a>
-
-
-																			            </div>
-
-
-										{{/each}}
-
-																								 </tbody>
-																							 </table>
-
+    <table  class="table table-hover table-sm">
+        <thead >
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+                <th scope="col">Service</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Staff Name</th>
+                <th scope="col">When</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        {{#each staffa }}
+        <tbody>
+            <tr>
+                <td>{{this.id}} </td>
+                <td>{{this.selected_day}} </td>
+                <td>{{this.selected_times}}</td>
+                <td>{{this.service_title}}</td>
+                <td>{{this.customer_name}}</td>
+                <td>{{this.staff_name}}</td>
+                <td class="text-muted">{{timeago created_at}}</td>
+                <td>
+                    <a href="booking/" class="btn btn-outline-primary btn-sm">Rebook</a>
+                </td>
+            </tr>
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <p>There are no booking saved yet</p>
+                <a href="/booking">Make your first booking</a>
+            </div>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
-																								 </main>
-
-
-
+</main>
 </div></div>
-
-
-															{{/if}}
+{{/if}}

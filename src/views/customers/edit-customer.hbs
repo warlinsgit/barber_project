@@ -1,98 +1,56 @@
 <!-- https://bootsnipp.com/snippets/bx5Be -->
-
-
-		       {{> dashboard }}
-
-
-
-					 <main class="col bg-faded py-5">
-				 			<h2 class="dashboard-title ">Edit my Profile</h2>
-							<div class="card">
-			            <div class="card-body">
-		                    <form action="/edit-customer/{{user.id}}"  method="post">
-                              <div class="form-group">
-                                <label for="userc_id" class=" col-form-label">User Id:</label>
-
-                                  <input  name="userc_id" value="{{user.id}}" readonly  class="form-control w-25" type="text">
-
-                              </div>
-
-                              <div class="form-group">
-                                <label for="fullname" class=" col-form-label">Full Name:</label>
-
-                                  <input name="fullname" value="{{user.fullname}}" class="form-control " type="text">
-
-                              </div>
-
-
-                              <div class="form-group">
-                                <label for="address" class=" col-form-label">Address</label>
-
-                                  <input value="{{customer.address}}" name="address"  class="form-control" type="text" >
-
-                              </div>
-
-
-
-                              <div class="form-group ">
-
-
-                                <label for="city" class="col-form-label w-25">City</label>
-
-                                  <select class="custom-select custom-select-sm" name="city">
-
-																				<option value="{{customer.city}}">{{customer.city}}</option>
-                                        <option value="Dublin">Dublin</option>
-                                         <option value="Cork">Cork</option>
-                                           <option value="Galway">Galway</option>
-                                             <option value="Limerick">Limerick</option>
-                                               <option value="Waterford">Waterford</option>
-                                                 <option value="Dundalk">Dundalk</option>
-                                                   <option value="Drogheda">Drogheda</option>
-                                                     <option value="Navan">Navan</option>
-
-                                    </select>
-
-
-                              </div>
-
-
-
-
-
-                              <div class="form-group">
-                                <label for="mobile" class=" col-form-label">Mobile</label>
-
-                                  <input type="text" name="mobile" class="form-control w-50"    id="phone-number" value="{{customer.mobile}}" required>
-
-                              </div>
-
-
-                              <div class="form-group">
-                                <label for="website" class=" col-form-label" >Age</label>
-
-                                  <input  name="age"  class="form-control w-50" type="text" value="{{customer.age}}" id="birth"  required>
-
-                              </div>
-
-                              <div class="form-group">
-
-                                  <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Update My Profile</button>
-
-                              </div>
-                            </form>
-													</div>
-											</div>
-				</main>
-			</div>
-		</div>
-
-
-
-
-		<script type="text/javascript">
-		$(document).ready(function(){
-		  $('#birth').mask('00');
-		  $('#phone-number').mask('+(353) 00 000 0000');
-		});
-		</script>
+{{> dashboard }}
+<main class="col bg-faded py-5">
+   <h2 class="dashboard-title ">Edit my Profile</h2>
+   <div class="card">
+      <div class="card-body">
+         <form action="/edit-customer/{{user.id}}"  method="post">
+            <div class="form-group">
+               <label for="userc_id" class=" col-form-label">User Id:</label>
+               <input  name="userc_id" value="{{user.id}}" readonly  class="form-control w-25" type="text">
+            </div>
+            <div class="form-group">
+               <label for="fullname" class=" col-form-label">Full Name:</label>
+               <input name="fullname" value="{{user.fullname}}" class="form-control " type="text">
+            </div>
+            <div class="form-group">
+               <label for="address" class=" col-form-label">Address</label>
+               <input value="{{customer.address}}" name="address"  class="form-control" type="text" >
+            </div>
+            <div class="form-group ">
+               <label for="city" class="col-form-label w-25">City</label>
+               <select class="custom-select custom-select-sm" name="city">
+                  <option value="{{customer.city}}">{{customer.city}}</option>
+                  <option value="Dublin">Dublin</option>
+                  <option value="Cork">Cork</option>
+                  <option value="Galway">Galway</option>
+                  <option value="Limerick">Limerick</option>
+                  <option value="Waterford">Waterford</option>
+                  <option value="Dundalk">Dundalk</option>
+                  <option value="Drogheda">Drogheda</option>
+                  <option value="Navan">Navan</option>
+               </select>
+            </div>
+            <div class="form-group">
+               <label for="mobile" class=" col-form-label">Mobile</label>
+               <input type="text" name="mobile" class="form-control w-50"    id="phone-number" value="{{customer.mobile}}" required>
+            </div>
+            <div class="form-group">
+               <label for="website" class=" col-form-label" >Age</label>
+               <input  name="age"  class="form-control w-50" type="text" value="{{customer.age}}" id="birth"  required>
+            </div>
+            <div class="form-group">
+               <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Update My Profile</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</main>
+</div>
+</div>
+<script type="text/javascript">
+   $(document).ready(function(){
+     $('#birth').mask('00');
+     $('#phone-number').mask('+(353) 00 000 0000');
+   });
+</script>

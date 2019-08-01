@@ -1,11 +1,3 @@
-//https://github.com/FaztTech/nodejs-mysql-links/blob/master/src/views/profile.hbs
-
-//https://www.youtube.com/watch?v=Xm05wLisaD0
-
-//https://www.js-tutorials.com/nodejs-tutorial/nodejs-tutorial-add-edit-delete-record-using-mysql/
-
-//https://www.tutsmake.com/first-crud-node-express-js-mysql-example/
-
 const express = require('express');
 const morgan = require('morgan');
 const hbs = require('express-handlebars');
@@ -19,7 +11,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const http = require('http');
 var url = require('url');
-
 const { database } = require('./keys');
 
 //initializations

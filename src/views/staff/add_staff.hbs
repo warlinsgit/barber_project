@@ -1,47 +1,26 @@
 {{> dashboard }}
-
-
-
 <main class="col bg-faded py-5">
-	 <h2 class="dashboard-title">Add New Staff</h2>
-	 <div class="card">
-			 <div class="card-body">
-
-		                        <form action="/staff/add_staff"  method="post">
-                              <div class="form-group ">
-                                <label for="staff_name" class="col-form-label">Full Name*</label>
-
-                                  <input  name="staff_name" placeholder="Full Name" class="form-control w-50" required="required" type="text" autofocus>
-
-                              </div>
-
-                              <div class="form-group ">
-                                <label for="mobile" class="col-form-label">Mobile</label>
-
-                                  <input name="mobile" placeholder="Phone Number" class="form-control w-50"  required="required" type="text" id="phone-number">
-
-                              </div>
-
-
-
-
-
-                                  <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Submit</button>
-
-
-                            </form>
-
-
-
-								</div>
-										</main>
-									 </div>
-								 </div>
-
-
-								 		<script type="text/javascript">
-								 		$(document).ready(function(){
-								 		  $('#birth').mask('00');
-								 		  $('#phone-number').mask('+(353) 00 000 0000');
-								 		});
-								 		</script>
+   <h2 class="dashboard-title">Add New Staff</h2>
+   <div class="card">
+      <div class="card-body">
+         <form action="/staff/add_staff"  method="post">
+            <div class="form-group ">
+               <label for="staff_name" class="col-form-label">Full Name*</label>
+               <input  name="staff_name" placeholder="Full Name" class="form-control w-50" required="required" type="text" autofocus>
+            </div>
+            <div class="form-group ">
+               <label for="mobile" class="col-form-label">Mobile</label>
+               <input name="mobile" placeholder="Phone Number" class="form-control w-50"  required="required" type="text" id="phone-number">
+            </div>
+            <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Submit</button>
+         </form>
+      </div>
+</main>
+</div>
+</div>
+<script type="text/javascript">
+   $(document).ready(function(){
+     $('#birth').mask('00');
+     $('#phone-number').mask('+(353) 00 000 0000');
+   });
+</script>

@@ -15,3 +15,5 @@ module.exports = {
     res.redirect('/profile');
   }
 };
+
+//user authentication - islogged in or not

@@ -1,53 +1,35 @@
-
-		       {{> dashboard }}
-
-					 <main class="col bg-faded  py-5">
-				 			<h2 class="dashboard-title">Add New Service</h2>
-							<div class="card">
-			            <div class="card-body">
-
-		                      <form action="/services/add"  method="post">
-                              <div class="form-group">
-                                <label for="title" class=" col-form-label ">Service Title*</label>
-
-                                  <input  name="title" placeholder="Service Title" class="form-control w-75" required="required" type="text" autofocus>
-
-                              </div>
-
-                              <div class="form-group ">
-                                <label for="description" class=" col-form-label">Description</label>
-
-                                  <textarea name="description" cols="40" rows="4" class="form-control"></textarea>
-
-                              </div>
-
-
-                              <div class="form-group">
-                                <label for="price" class=" col-form-label">Price</label>
-
-                                  <input  name="price" placeholder="Price" class="form-control w-25" required="required" type="text" id="price">
-
-                              </div>
-
-
-                              <div class="form-group ">
-
-                                  <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Submit</button>
-
-                              </div>
-                            </form>
-		                </div>
-		            </div>
-
-		        </div>
-		    </div>
-		</div>
-	</div>
+{{> dashboard }}
+<main class="col bg-faded  py-5">
+<h2 class="dashboard-title">Add New Service</h2>
+<div class="card">
+   <div class="card-body">
+      <form action="/services/add"  method="post">
+         <div class="form-group">
+            <label for="title" class=" col-form-label ">Service Title*</label>
+            <input  name="title" placeholder="Service Title" class="form-control w-75" required="required" type="text" autofocus>
+         </div>
+         <div class="form-group ">
+            <label for="description" class=" col-form-label">Description</label>
+            <textarea name="description" cols="40" rows="4" class="form-control"></textarea>
+         </div>
+         <div class="form-group">
+            <label for="price" class=" col-form-label">Price</label>
+            <input  name="price" placeholder="Price" class="form-control w-25" required="required" type="text" id="price">
+         </div>
+         <div class="form-group ">
+            <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Submit</button>
+         </div>
+      </form>
+   </div>
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 <script type="text/javascript">
-$(document).ready(function(){
- $('#price').mask('00');
- $('#phone-number').mask('+(353) 00 000 0000');
-});
+   $(document).ready(function(){
+    $('#price').mask('00');
+    $('#phone-number').mask('+(353) 00 000 0000');
+   });
 </script>
