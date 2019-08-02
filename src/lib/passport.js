@@ -45,7 +45,7 @@ passport.use('local.signin', new LocalStrategy({
 //Validate signup - user
       req.check('email', 'Invalid email').notEmpty().isEmail();
       req.check('password', 'Incorret Password, must contain at least 4 or more characters').notEmpty().isLength({min:4});
-      req.check('fullname', 'Invalid fullname').notEmpty().isLength({min:4});
+      req.check('fullname', 'Invalid fullname, must contain at least 4 or more characters').notEmpty().isLength({min:4});
 
       var errors = req.validationErrors(); //check if any error appeard
     if (errors){

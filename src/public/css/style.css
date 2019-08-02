@@ -380,8 +380,9 @@ ul>li a.list-group-item {
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	/*
 	width: 100vw;
-	height: 100vh;
+	height: 100vh;*/
 }
 
 /*services services/services_all*/
@@ -401,7 +402,7 @@ ul>li a.list-group-item {
 }
 .our-services-text {
 	overflow: hidden;
-	padding: 28px 0 25px;
+	padding: 8px 0 5px;
 }
 .our-services-text h4 {
 	color: #222222;
@@ -432,7 +433,7 @@ ul>li a.list-group-item {
 p {
 	font-size: 14px;
 	font-weight: 400;
-	line-height: 26px;
+	
 	color: #666;
 	margin-bottom: 15px;
 }
@@ -441,7 +442,7 @@ p {
 .service-price {
 	position: relative;
 	left: 72%;
-	top: 30px;
+	top: 10px;
 }
 
 /*time table*/
