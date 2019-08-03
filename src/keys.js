@@ -1,5 +1,4 @@
 
-/*
 module.exports = {
   database: {
     host: 'localhost',
@@ -10,11 +9,11 @@ module.exports = {
   }
 }
 
-*/
+
 /* git  git remote set-url origin https*/
 
 /*kkd*/
-
+/*
 module.exports = {
   database: {
     host: 'db4free.net',
@@ -25,7 +24,7 @@ module.exports = {
     database: 'barbershop'
   }
 }
-
+*/
 
 
 

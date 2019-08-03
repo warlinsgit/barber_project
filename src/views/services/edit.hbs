@@ -4,28 +4,28 @@
    <div class="card">
       <div class="card-body">
          <form action="/services/edit/{{services.id}}"  method="post">
-            <div class="form-group row">
-               <label for="title" class="col-4 col-form-label">Service Title*</label>
-               <div class="col-8">
-                  <input  name="title" placeholder="Service Title" class="form-control" value="{{services.title}}" type="text" autofocus>
-               </div>
+            <div class="form-group">
+               <label for="title" class=" col-form-label">Service Title*</label>
+
+                  <input  name="title" placeholder="Service Title" class="form-control w-75" value="{{services.title}}" type="text" autofocus>
+
             </div>
-            <div class="form-group row">
-               <label for="description" class="col-4 col-form-label">Description</label>
-               <div class="col-8">
-                  <textarea name="description" cols="40" rows="4" class="form-control">{{services.description}}</textarea>
-               </div>
+            <div class="form-group">
+               <label for="description" class=" col-form-label">Description</label>
+
+                  <textarea name="description" cols="40" rows="4" class="form-control w-75">{{services.description}}</textarea>
+
             </div>
-            <div class="form-group row">
-               <label for="price" class="col-4 col-form-label">Price</label>
-               <div class="col-8">
-                  <input  name="price" placeholder="Price" class="form-control" value="{{services.price}}" type="text">
-               </div>
+            <div class="form-group">
+               <label for="price" class=" col-form-label">Price</label>
+
+                  <input  name="price" placeholder="Price" class="form-control w-25" value="{{services.price}}" type="text">
+
             </div>
-            <div class="form-group row">
-               <div class="offset-4 col-8">
+            <div class="form-group">
+
                   <button name="submit" type="submit" class="btn btn-outline-success btn-sm">Submit</button>
-               </div>
+
             </div>
          </form>
          </form>

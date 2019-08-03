@@ -239,7 +239,7 @@ router.post('/confirm_booking/', async(req, res)=>{
 
      text: 'You have a submission from... Name: '+req.body.name+' Email:  '+req.body.email+' Subject:  '+req.body.subject+'  Message: '+req.body.message,
 
-      html: '<h2 sytle="color:#011e1e">Thank you for your appointment with us</h2><h3>We look forward to seeing you.</h3> <ul><li><b>Day:</b> '+req.body.selected_day+' </li> <li><b>Time:</b>  '+req.body.selected_times+' <li><b> Barber:</b> '+req.body.staff_name+' </li> <li><b> Service:</b> '+req.body.service_title+' </li></ul><p><a href="http://localhost:5000/book-confirmed">Click here for the full details of your booking</a></p><div>With warm regards!<br>Barbershop Booking Online</div>'
+      html: '<h2 style="color:#011e1e">Hi&nbsp;' +req.user.fullname+'</h2> <h3>Thank you for your appointment with us</h3><h3>We look forward to seeing you.</h3> <ul><li><b>Day:</b> '+req.body.selected_day+' </li> <li><b>Time:</b>  '+req.body.selected_times+' <li><b> Barber:</b> '+req.body.staff_name+' </li> <li><b> Service:</b> '+req.body.service_title+' </li></ul><p><a href="http://localhost:5000/book-confirmed">Click here for the full details of your booking</a></p><div>With warm regards!<br>Barbershop Booking Online</div>'
 
 
  }

@@ -1,17 +1,17 @@
 {{> dashboard }}
-<main class="col bg-faded py-3">
-   <h2 class="dashboard-title py-3" >Edit Staff</h2>
+<main class="col bg-faded py-5">
+   <h2 class="dashboard-title" >Edit Staff</h2>
    <div class="card">
       <div class="card-body">
          {{#each staff}}
          <form action="/edit_staff/{{staff_id}}"  method="post">
             <div class="form-group">
                <label for="staff_name" class=" col-form-label">Full Name*</label>
-               <input  name="staff_name" value="{{staff_name}}" class="form-control" required="required" type="text" autofocus>
+               <input  name="staff_name" value="{{staff_name}}" class="form-control w-50" required="required" type="text" autofocus>
             </div>
             <div class="form-group">
                <label for="mobile" class=" col-form-label" required>Mobile</label>
-               <input value="{{mobile}}" name="mobile" id="phone-number"  class="form-control" required="required" type="text">
+               <input value="{{mobile}}" name="mobile" id="phone-number"  class="form-control w-50" required="required" type="text">
             </div>
             {{/each}}
             <div class="form-group ">
