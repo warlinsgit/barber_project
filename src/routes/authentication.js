@@ -249,9 +249,7 @@ const amigo = pool.query("UPDATE users_b SET coded = ? WHERE email = ?;", [email
 
 
   var transporter=nodemailer.createTransport( {
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+
     service: 'gmail', auth: {
      user: 'matutinolife@gmail.com', pass: 'matutino3030'
     }
