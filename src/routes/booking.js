@@ -225,6 +225,10 @@ router.post('/confirm_booking/', async(req, res)=>{
 
 
  var transporter=nodemailer.createTransport( {
+
+   host: 'smtp.gmail.com',
+   port: 465,
+   secure: true,
    service: 'gmail', auth: {
      user: 'matutinolife@gmail.com', pass: 'matutino3030'
    }
